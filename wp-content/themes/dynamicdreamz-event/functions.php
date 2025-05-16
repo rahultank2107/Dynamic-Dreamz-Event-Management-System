@@ -176,3 +176,13 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+
+/**
+ * Load event management post type file
+ * This file registers the custom event post type with all necessary supports.
+ * @package Dynamic-Dreamz
+ * @author Rahul
+ * @date 16-05-2025
+ */
+require get_template_directory() . '/inc/event-post-type.php';
