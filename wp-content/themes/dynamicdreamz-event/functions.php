@@ -227,3 +227,8 @@ if (is_admin()) {
     require_once get_template_directory() . '/inc/admin/event-popularity.php';
     require_once get_template_directory() . '/inc/admin/roles-capabilities.php';
 }
+
+require_once get_template_directory() . '/inc/rate-limiter.php';
+require_once get_template_directory() . '/inc/audit-trail.php';
+require_once get_template_directory() . '/inc/qr-code-generator.php';
+require_once get_template_directory() . '/inc/widget-random-event.php';

@@ -7,6 +7,14 @@ add_action('rest_api_init', function () {
     ]);
 });
 
+add_action('rest_api_init', function () {
+    register_rest_route('v1', '/events', [
+        'methods' => 'GET',
+        'callback' => 'get_filtered_events',
+        'permission_callback' => '__return_true',
+    ]);
+});
+
 function ddz_handle_event_submission($request) {
     // WordPress functions Loaded 
     require_once ABSPATH . 'wp-admin/includes/image.php';
@@ -61,4 +69,51 @@ function ddz_handle_event_submission($request) {
     }
 
     return new WP_REST_Response(['success' => true, 'message' => 'Event submitted successfully.'], 200);
+}
+
+function get_filtered_events($request) {
+    $args = [
+        'post_type' => 'event',
+        'posts_per_page' => 10,
+        'post_status' => 'publish',
+        'meta_query' => [
+            [
+                'key' => 'event_start',
+                'value' => date('Y-m-d'),
+                'compare' => '>=',
+                'type' => 'DATE'
+            ]
+        ],
+        'tax_query' => [],
+    ];
+
+    if ($city = $request->get_param('city')) {
+        $args['tax_query'][] = [
+            'taxonomy' => 'city',
+            'field' => 'slug',
+            'terms' => $city,
+        ];
+    }
+
+    if ($type = $request->get_param('type')) {
+        $args['tax_query'][] = [
+            'taxonomy' => 'event_type',
+            'field' => 'slug',
+            'terms' => $type,
+        ];
+    }
+
+    $query = new WP_Query($args);
+    $events = [];
+
+    foreach ($query->posts as $post) {
+        $events[] = [
+            'id' => $post->ID,
+            'title' => get_the_title($post),
+            'start_date' => get_post_meta($post->ID, 'event_start', true),
+            'url' => get_permalink($post),
+        ];
+    }
+
+    return rest_ensure_response($events);
 }
