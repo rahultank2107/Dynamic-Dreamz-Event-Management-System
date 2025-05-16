@@ -1,0 +1,18 @@
+# WordPress core files & folders
+/wp-admin/
+/wp-includes/
+/wp-config.php
+/.htaccess
+
+# Uploads - large and dynamic files
+/wp-content/uploads/
+
+# Plugins
+/wp-content/plugins/
+
+# Node modules, vendor, logs, OS files etc.
+node_modules/
+vendor/
+*.log
+.DS_Store
+.env
