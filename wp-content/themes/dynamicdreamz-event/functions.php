@@ -232,3 +232,11 @@ require_once get_template_directory() . '/inc/rate-limiter.php';
 require_once get_template_directory() . '/inc/audit-trail.php';
 require_once get_template_directory() . '/inc/qr-code-generator.php';
 require_once get_template_directory() . '/inc/widget-random-event.php';
+require_once get_template_directory() . '/inc/event-traps/slug-trap.php';
+require_once get_template_directory() . '/inc/event-traps/maintenance-check.php';
+function enqueue_event_traps_scripts() {
+	wp_enqueue_script('event-traps', get_template_directory_uri() . '/js/event-traps.js', [], null, true);
+    wp_localize_script('event-traps', 'ajaxurl', admin_url('admin-ajax.php'));
+    wp_add_inline_script('event-traps', 'const maintenance_nonce = "' . wp_create_nonce('maintenance_toggle') . '";');
+}
+add_action('wp_enqueue_scripts', 'enqueue_event_traps_scripts');
