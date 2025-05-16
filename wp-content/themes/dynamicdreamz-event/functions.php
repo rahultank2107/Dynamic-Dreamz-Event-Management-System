@@ -224,6 +224,6 @@ require get_template_directory() . '/inc/event-rest-api.php';
 if (is_admin()) {
     require_once get_template_directory() . '/inc/admin/custom-statuses.php';
     require_once get_template_directory() . '/inc/admin/admin-filters.php';
-    require_once get_template_directory() . '/inc/admin/sortable-columns.php';
     require_once get_template_directory() . '/inc/admin/event-popularity.php';
+    require_once get_template_directory() . '/inc/admin/roles-capabilities.php';
 }
