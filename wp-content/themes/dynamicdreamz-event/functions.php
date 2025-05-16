@@ -182,8 +182,6 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 /**
  * Enqueue custom admin styles for Event Meta Box fields.
  *
- * This adds a custom stylesheet to the WordPress admin area
- * to style the Event Details metabox fields for better UI/UX.
  */
 function dynamic_dreamz_admin_styles() {
     wp_enqueue_style(
@@ -195,6 +193,21 @@ function dynamic_dreamz_admin_styles() {
 }
 add_action('admin_enqueue_scripts', 'dynamic_dreamz_admin_styles');
 
+
+add_action('wp_enqueue_scripts', function () {
+    if (is_page('event-details-form')) {
+        wp_enqueue_style('dd-event-style', get_template_directory_uri() . '/assets/css/event-form.css');
+
+        wp_enqueue_script('dd-event-script', get_template_directory_uri() . '/js/dd-event-form.js', [], null, true);
+
+        wp_localize_script('dd-event-script', 'dd_vars', [
+            'rest_url' => esc_url_raw(rest_url('dynamicdreamz/v1/submit-event')),
+            'nonce'    => wp_create_nonce('wp_rest'),
+        ]);
+    }
+});
+
+
 /**
  * Load event management post type file
  * This file registers the custom event post type with all necessary supports.
@@ -204,3 +217,6 @@ add_action('admin_enqueue_scripts', 'dynamic_dreamz_admin_styles');
 require get_template_directory() . '/inc/event-post-type.php';
 require get_template_directory() . '/inc/event-taxonomy.php';
 require get_template_directory() . '/inc/event-metaboxes.php';
+
+require get_template_directory() . '/inc/event-submission-form.php';
+require get_template_directory() . '/inc/event-rest-api.php';
