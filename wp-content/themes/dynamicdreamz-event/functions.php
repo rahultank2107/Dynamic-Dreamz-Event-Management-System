@@ -220,3 +220,8 @@ require get_template_directory() . '/inc/event-metaboxes.php';
 
 require get_template_directory() . '/inc/event-submission-form.php';
 require get_template_directory() . '/inc/event-rest-api.php';
+
+if (is_admin()) {
+    require_once get_template_directory() . '/inc/admin/custom-statuses.php';
+    require_once get_template_directory() . '/inc/admin/admin-filters.php';
+}
