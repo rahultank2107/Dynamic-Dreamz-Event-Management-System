@@ -1,0 +1,28 @@
+.dd-meta-field {
+    margin-bottom: 15px;
+}
+
+.dd-meta-field label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.dd-meta-field input[type="text"],
+.dd-meta-field input[type="email"],
+.dd-meta-field input[type="datetime-local"],
+.dd-meta-field input[type="number"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.main-dd-cls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 15px;
+    row-gap: 10px;
+}

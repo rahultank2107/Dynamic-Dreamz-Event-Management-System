@@ -178,11 +178,29 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
 
 
+
+/**
+ * Enqueue custom admin styles for Event Meta Box fields.
+ *
+ * This adds a custom stylesheet to the WordPress admin area
+ * to style the Event Details metabox fields for better UI/UX.
+ */
+function dynamic_dreamz_admin_styles() {
+    wp_enqueue_style(
+        'dynamic-dreamz-event-styles',
+        get_template_directory_uri() . '/assets/css/event-styles.css',
+        array(),
+        '1.0'
+    );
+}
+add_action('admin_enqueue_scripts', 'dynamic_dreamz_admin_styles');
+
 /**
  * Load event management post type file
  * This file registers the custom event post type with all necessary supports.
  * @package Dynamic-Dreamz
  * @author Rahul
- * @date 16-05-2025
  */
 require get_template_directory() . '/inc/event-post-type.php';
+require get_template_directory() . '/inc/event-taxonomy.php';
+require get_template_directory() . '/inc/event-metaboxes.php';
