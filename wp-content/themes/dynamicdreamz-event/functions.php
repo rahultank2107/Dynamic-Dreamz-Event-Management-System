@@ -222,6 +222,11 @@ function dynamicdreamz_enqueue_event_form_scripts() {
             'nonce'    => wp_create_nonce('wp_rest'),
         ] );
     }
+
+	 wp_enqueue_style(
+            'randome-widgets',
+            get_template_directory_uri() . '/assets/css/randome-widgets.css'
+        );
 }
 add_action('wp_enqueue_scripts', 'dynamicdreamz_enqueue_event_form_scripts');
 

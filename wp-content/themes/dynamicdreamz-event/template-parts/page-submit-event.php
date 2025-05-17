@@ -1,16 +1,11 @@
 <?php
 /* Template Name: Submit Event */
 get_header();
-?>
 
-<div class="event-submission-form">
-    <?php dynamicdreamz_render_event_submission_form(); ?>
-</div>
+if ( function_exists('dd_show_maintenance_message_or_form') ) {
+    dd_show_maintenance_message_or_form();
+} else {
+    echo '<p>Form function missing.</p>';
+}
 
-
-<?php if (is_active_sidebar('event_sidebar')) : ?>
-    <aside id="sidebar">
-        <?php dynamic_sidebar('event_sidebar'); ?>
-    </aside>
-<?php endif; ?>
-<?php get_footer();?>
+get_footer();

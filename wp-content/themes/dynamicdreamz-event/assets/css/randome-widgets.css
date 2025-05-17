@@ -1,0 +1,48 @@
+    /* Basic styling for Random Event Page */
+    .container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 32px;
+        color: #333;
+    }
+
+    .random-event-widget {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 25px;
+        border-radius: 8px;
+    }
+
+    .random-event-widget h4 {
+        margin-top: 0;
+        font-size: 24px;
+        color: #222;
+    }
+
+    .random-event-widget p {
+        color: #555;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .random-event-widget .button {
+        display: inline-block;
+        margin-top: 15px;
+        background-color: #0073aa;
+        color: #fff;
+        padding: 10px 18px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+    }
+
+    .random-event-widget .button:hover {
+        background-color: #005f8d;
+    }

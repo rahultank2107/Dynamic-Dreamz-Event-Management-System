@@ -12,27 +12,21 @@ document.addEventListener('DOMContentLoaded', function () {
             venueFields.style.display = this.value === 'venue' ? 'block' : 'none';
         });
 
-        // Automatically add and enforce "+91 " prefix on phone input
         phoneInput.addEventListener('input', function () {
             let val = this.value;
 
-            // Ensure it always starts with '+91 '
             if (!val.startsWith('+91 ')) {
                 val = '+91 ';
             }
 
-            // Get the part after '+91 '
             let afterPrefix = val.slice(4);
 
-            // Remove all non-digit characters after prefix
             afterPrefix = afterPrefix.replace(/\D/g, '');
 
-            // Limit to max 10 digits
             if (afterPrefix.length > 10) {
                 afterPrefix = afterPrefix.slice(0, 10);
             }
 
-            // Rebuild full input value
             this.value = '+91 ' + afterPrefix;
         });
 
@@ -107,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     .then(data => {
                         if (data.success) {
                             alert('Event submitted successfully!');
-                            window.location.reload();  // Reload page on success
+                            window.location.reload();
                         } else {
                             alert(data.message || 'Something went wrong.');
                             submitButton.disabled = false;
