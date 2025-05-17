@@ -13,3 +13,4 @@ get_header();
         <?php dynamic_sidebar('event_sidebar'); ?>
     </aside>
 <?php endif; ?>
+<?php get_footer();?>

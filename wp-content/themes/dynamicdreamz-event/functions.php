@@ -194,18 +194,38 @@ function dynamic_dreamz_admin_styles() {
 add_action('admin_enqueue_scripts', 'dynamic_dreamz_admin_styles');
 
 
-add_action('wp_enqueue_scripts', function () {
-    if (is_page('event-details-form')) {
-        wp_enqueue_style('dd-event-style', get_template_directory_uri() . '/assets/css/event-form.css');
+// add_action('wp_enqueue_scripts', function () {
+//     if (is_page('event-details-form')) {
+//         wp_enqueue_style('dd-event-style', get_template_directory_uri() . '/assets/css/event-form.css');
 
-        wp_enqueue_script('dd-event-script', get_template_directory_uri() . '/js/dd-event-form.js', [], null, true);
+//         wp_enqueue_script('dd-event-script', get_template_directory_uri() . '/js/dd-event-form.js', [], null, true);
 
-        wp_localize_script('dd-event-script', 'dd_vars', [
-            'rest_url' => esc_url_raw(rest_url('dynamicdreamz/v1/submit-event')),
+//         wp_localize_script('dd-event-script', 'dd_vars', [
+//             'rest_url' => esc_url_raw(rest_url('dynamicdreamz/v1/submit-event')),
+//             'nonce'    => wp_create_nonce('wp_rest'),
+//         ]);
+//     }
+// });
+
+function dynamicdreamz_enqueue_event_form_scripts() {
+    if ( is_page('event-details-form') ) {
+        wp_enqueue_style(
+            'dd-event-style',
+            get_template_directory_uri() . '/assets/css/event-form.css'
+        );
+
+		wp_enqueue_script('dd-event-script', get_template_directory_uri() . '/js/dd-event-form.js', array(), time(), true);
+
+
+        wp_localize_script( 'dd-event-script', 'dd_vars', [
+            'rest_url' => esc_url_raw( rest_url('dynamicdreamz/v1/submit-event') ),
             'nonce'    => wp_create_nonce('wp_rest'),
-        ]);
+        ] );
     }
-});
+}
+add_action('wp_enqueue_scripts', 'dynamicdreamz_enqueue_event_form_scripts');
+
+
 
 
 /**

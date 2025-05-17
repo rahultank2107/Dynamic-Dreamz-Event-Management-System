@@ -16,7 +16,10 @@ function dynamicdreamz_render_event_submission_form() {
         <label>Organizer Email</label>
         <input type="email" name="organizer_email" placeholder="Organizer Email" required>
         <label>Organizer Phone</label>
+        <!-- <input type="text" id="organizer_phone" name="organizer_phone" placeholder="+91-123-123-1234" required> -->
+
         <input type="text" id="organizer_phone" name="organizer_phone" placeholder="+91-123-123-1234" required>
+
 
         <label>Venue Selection</label>
         <select name="event_type" id="event_type">
@@ -41,7 +44,6 @@ function dynamicdreamz_render_event_submission_form() {
         <p id="form-message"></p>
     </form>
 
-    <script src="<?php echo get_template_directory_uri(); ?>/js/dd-event-form.js"></script>
     <?php
 }
 
